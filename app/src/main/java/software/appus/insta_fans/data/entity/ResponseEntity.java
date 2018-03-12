@@ -8,6 +8,7 @@ package software.appus.insta_fans.data.entity;
  * Created by anatolii.pozniak on 6/30/17.
  */
 
-public class ResponseEntity<T> {
+public class ResponseEntity<T, P> {
+    public P pagination;
     public T data;
 }

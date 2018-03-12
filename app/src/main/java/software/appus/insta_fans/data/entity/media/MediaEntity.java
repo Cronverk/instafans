@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class MediaEntity {
 
-
     @SerializedName("id")
     @Expose
     private String id;
