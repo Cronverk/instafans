@@ -1,7 +1,8 @@
 package software.appus.insta_fans.data.mappers;
 
+import software.appus.insta_fans.data.common.DataMapper;
 import software.appus.insta_fans.data.entity.media.MediaEntity;
-import software.appus.insta_fans.ui.models.MediaModel;
+import software.appus.insta_fans.presentation.models.MediaModel;
 
 /**
  * Created by anatolii.pozniak on 3/12/18.
