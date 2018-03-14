@@ -20,10 +20,6 @@ public class UserSourceFactory {
         mUserCache = userCache;
     }
 
-    public UserSourceFactory(UserCache userCache) {
-        mUserCache = userCache;
-    }
-
     public UserDataSource create() {
         return (!mUserCache.isExpired() && mUserCache.isCached()) ?
                 new UserLocalStorage(mUserCache) : new UserCloudSource(mUserApi, mUserCache);

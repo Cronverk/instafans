@@ -24,12 +24,17 @@ public class GetUserUsecase extends UseCase<GetUserUsecase.RequestValues, GetUse
     protected void executeUseCase(RequestValues requestValues) {
         UserEntity entity = mRepository.getUser();
         UserModel userModel = new UserEntityToUserModelMapper().transform(entity);
-        getUseCaseCallback().onSuccess(new ResponseValue());
+        getUseCaseCallback().onSuccess(new ResponseValue(userModel));
     }
 
     public static final class RequestValues implements UseCase.RequestValues {
     }
 
     public static final class ResponseValue implements UseCase.ResponseValue {
+        public UserModel data;
+
+        public ResponseValue(UserModel data) {
+            this.data = data;
+        }
     }
 }

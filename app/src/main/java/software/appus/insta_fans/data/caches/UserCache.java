@@ -44,8 +44,4 @@ public class UserCache extends BaseCache<UserEntity> {
         return KEY;
     }
 
-    @Override
-    public boolean isExpired() {
-        return false;
-    }
 }

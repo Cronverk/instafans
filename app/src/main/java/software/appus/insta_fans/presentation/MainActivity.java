@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements MainLoaderView, U
             public void onResponse(Call<ResponseEntity<UserEntity, Void>> call, Response<ResponseEntity<UserEntity, Void>> response) {
                 if (response.body() != null) {
                     UserEntity user = response.body().data;
-                    amount = user.getCounts().getMedia();
+                    amount = user.counts.getMedia();
                     loadMediaData("0", LOAD_CNT);
                 }
             }
@@ -206,11 +206,11 @@ public class MainActivity extends AppCompatActivity implements MainLoaderView, U
                             for (Map.Entry<String, Long> entry : mapLikes.entrySet()) {
                                 UserEntity user = users.get(entry.getKey());
                                 if (followersList.size() == 0) {
-                                    followersList.add(new FollowerLikesModel(user.getUsername(), user.getProfilePicture(), entry.getValue()));
+                                    followersList.add(new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
                                 } else {
                                     for (int i = 0; i < followersList.size(); i++) {
                                         if (followersList.get(i).likes <= entry.getValue()) {
-                                            followersList.add(i, new FollowerLikesModel(user.getUsername(), user.getProfilePicture(), entry.getValue()));
+                                            followersList.add(i, new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
                                             break;
                                         }
                                     }

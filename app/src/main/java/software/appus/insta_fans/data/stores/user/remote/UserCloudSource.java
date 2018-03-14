@@ -1,9 +1,15 @@
 package software.appus.insta_fans.data.stores.user.remote;
 
+import java.io.IOException;
+
+import retrofit2.Response;
 import software.appus.insta_fans.data.caches.UserCache;
+import software.appus.insta_fans.data.entity.ResponseEntity;
 import software.appus.insta_fans.data.entity.UserEntity;
 import software.appus.insta_fans.data.net.UserApi;
 import software.appus.insta_fans.data.stores.user.UserDataSource;
+
+import static software.appus.insta_fans.presentation.common.Constants.ACESS_TOKEN;
 
 /**
  * Created by anatolii.pozniak on 11/28/17.
@@ -21,6 +27,16 @@ public class UserCloudSource implements UserDataSource {
 
     @Override
     public UserEntity get() {
+        try {
+            Response<ResponseEntity<UserEntity, Void>> response = mUserApi.getSelf(ACESS_TOKEN).execute();
+            if (response != null && response.isSuccessful() && response.body() != null) {
+                UserEntity user = response.body().data;
+                mUserCache.put(user);
+                return user;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

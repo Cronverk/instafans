@@ -11,7 +11,16 @@ import software.appus.insta_fans.presentation.models.UserModel;
 public class UserEntityToUserModelMapper extends DataMapper<UserModel, UserEntity> {
     @Override
     public UserModel transform(UserEntity entity) {
-
-        return null;
+        UserModel user = new UserModel();
+        user.setId(entity.id);
+        user.setBio(entity.bio);
+        user.setBusiness(entity.isBusiness);
+        user.setFullName(entity.fullName);
+        user.setUsername(entity.username);
+        user.setWebsite(entity.website);
+        user.setFollowedByCount(entity.counts.getFollowedBy());
+        user.setFollowsCount(entity.counts.getFollows());
+        user.setMediaCount(entity.counts.getMedia());
+        return user;
     }
 }

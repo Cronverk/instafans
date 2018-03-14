@@ -3,16 +3,10 @@ package software.appus.insta_fans.data.net;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -20,15 +14,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RESTClient {
 
-    private Retrofit retrofit;
+    private final Retrofit retrofit;
     private final OkHttpClient client;
-    private static RESTClient ourInstance;
+    private static RESTClient INSTANCE;
 
-    public static final String BASE_URL = "https://api.instagram.com/";
+    private final static String BASE_URL = "https://api.instagram.com/";
 
     public static RESTClient getInstance() {
-        if (ourInstance == null) ourInstance = new RESTClient();
-        return ourInstance;
+        if (INSTANCE == null) {
+            INSTANCE = new RESTClient();
+        }
+        ;
+        return INSTANCE;
     }
 
     private RESTClient() {
@@ -58,40 +55,10 @@ public class RESTClient {
                 .build();
     }
 
-    public OkHttpClient getClient() {
-        return client;
-    }
-
     public Retrofit getRetrofit() {
         return retrofit;
     }
 
-    public SSLSocketFactory getSSLSocketFactory() {
-        try {
-            TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        public X509Certificate[] getAcceptedIssuers() {
-                            return new X509Certificate[0];
-                        }
-
-                        @Override
-                        public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                        }
-
-                        @Override
-                        public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                        }
-                    }
-            };
-
-            SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, trustAllCerts, new SecureRandom());
-            return sc.getSocketFactory();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public RestApi getRestApi() {
         return retrofit.create(RestApi.class);
