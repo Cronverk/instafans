@@ -3,6 +3,7 @@ package software.appus.insta_fans.presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -41,7 +42,7 @@ public class AuthorizationActivity extends BaseActivity {
     }
 
     @Override
-    protected void initActivityViews() {
+    protected void initActivityViews(Bundle savedInstanceState) {
         oauthWv.setVerticalScrollBarEnabled(false);
         oauthWv.setHorizontalScrollBarEnabled(false);
         oauthWv.setWebViewClient(new InstagramWebViewClient());

@@ -11,13 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Base.Theme.AppCompat.Light">
+        android:theme="@style/Theme.InstaTheme">
         <activity android:name=".presentation.AuthorizationActivity">
 
         </activity>
         <activity
-            android:name=".presentation.statistic_module.ui.StatisticViewImpl"
-            android:theme="@style/Base.Theme.AppCompat.Light">
+            android:name=".presentation.router_module.view.RouterViewImpl">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,14 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.MainActivity"
-            android:theme="@style/Base.Theme.AppCompat.Light">
+            android:name=".presentation.MainActivity">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
+
     </application>
 
 </manifest>

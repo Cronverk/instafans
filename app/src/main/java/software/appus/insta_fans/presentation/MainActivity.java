@@ -38,7 +38,7 @@ import software.appus.insta_fans.data.entity.media.MediaEntity;
 import software.appus.insta_fans.data.entity.media.MediaPagination;
 import software.appus.insta_fans.data.mappers.MediaEntityToMediaModelMapper;
 import software.appus.insta_fans.data.net.RESTClient;
-import software.appus.insta_fans.presentation.common.adapter.FollowerLikeDelegate;
+import software.appus.insta_fans.presentation.common.adapter.delegates.FollowerLikeDelegate;
 import software.appus.insta_fans.presentation.likes_service.UiThreadCallback;
 import software.appus.insta_fans.presentation.models.InsertMedialModel;
 import software.appus.insta_fans.presentation.models.MediaModel;
@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity implements MainLoaderView, U
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         initProgressView();
-        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh);
-        mRecyclerView = findViewById(R.id.recycler);
+//        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh);
+//        mRecyclerView = findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mAdapter = new ListDelegateAdapter.Builder<FollowerLikesModel>()
                 .addDelegate(new FollowerLikeDelegate())
@@ -165,9 +165,9 @@ public class MainActivity extends AppCompatActivity implements MainLoaderView, U
     }
 
     private void initProgressView() {
-        tvProgress = findViewById(R.id.tv_progress);
-        mProgressBar = findViewById(R.id.progress);
-        ivMedia = findViewById(R.id.iv_media);
+//        tvProgress = findViewById(R.id.tv_progress);
+//        mProgressBar = findViewById(R.id.progress);
+//        ivMedia = findViewById(R.id.iv_media);
     }
 
     private void fetchLikesFromMedia(String token, int offset, int cnt, String newMaxId) {

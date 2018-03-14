@@ -1,4 +1,4 @@
-package software.appus.insta_fans.presentation.common.adapter;
+package software.appus.insta_fans.presentation.common.adapter.delegates;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import software.appus.insta_fans.common.adapter.AdapterDelegate;
 import software.appus.insta_fans.common.adapter.BaseViewHolder;
 import software.appus.insta_fans.common.adapter.OnRecyclerItemClick;
 import software.appus.insta_fans.presentation.FollowerLikesModel;
+import software.appus.insta_fans.presentation.common.adapter.holders.FollowrLikeHolder;
 
 /**
  * Created by anatolii.pozniak on 3/7/18.

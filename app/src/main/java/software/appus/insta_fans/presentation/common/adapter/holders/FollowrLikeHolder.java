@@ -1,4 +1,4 @@
-package software.appus.insta_fans.presentation.common.adapter;
+package software.appus.insta_fans.presentation.common.adapter.holders;
 
 import android.view.View;
 import android.widget.ImageView;
