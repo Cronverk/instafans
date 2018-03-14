@@ -1,4 +1,166 @@
 <resources>
-    <string name="app_name">insta-fans</string>
-    <string name="sign_in">sign_in</string>
+    <string name="app_name" translatable="false">instafans</string>
+    <!--Base-->
+    <string name="developer_id" translatable="false">Appus+Studio</string>
+    <string name="ok">ok</string>
+    <string name="cancel">Cancel</string>
+    <!--Side menu-->
+    <string name="rating_list">Rating List</string>
+    <string name="my_profile">My Profile</string>
+    <string name="buy_pro">Buy PRO</string>
+    <string name="log_out">Log Out</string>
+    <!--Dialogs-->
+    <string name="please_login">You are not logged in. Log in please.</string>
+    <string name="invite">Invite</string>
+    <string name="permission_error">Please allow access to your Facebook information</string>
+    <string name="no_followers_users_message">Your followers haven\'t installed Likulator yet</string>
+    <string name="no_following_users_message">Your following users haven\'t installed Likulator yet</string>
+    <string name="do_you_want_to_see_more_our_apps">Do you want to see more our apps?</string>
+    <string name="do_you_like_our_app">Do you like our app?</string>
+    <string name="please_rate_app_in_play_market">Please rate app in Play Market</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="rate_this_app">Rate this app</string>
+    <string name="no_thanks">No, thanks</string>
+    <string name="rate">Rate</string>
+    <string name="login_big">Login</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="please_send_feedback">Please send feedback</string>
+    <string name="feedback_receiver">support@appus.pro</string>
+    <string name="feedback_subject">Likulator feedback</string>
+    <string name="feedback_hint">Type message here</string>
+    <!--Login screen-->
+    <string name="login_with_instagram">Log In with Instagram</string>
+    <string name="show_in_instagram">Show in Instagram</string>
+    <string name="login">Login</string>
+    <string name="guest">Guest</string>
+    <string name="oauth_error">Can\'t authorise</string>
+    <string name="authorization">Authorization</string>
+
+    <!--Buy Pro Screen-->
+    <string name="buy_pro_text">We are happy to announce, that buying our outstanding PRO version only for 0,99$ you can count your likes without annoying advertisement!\nVideos, photos, posts- make sure that every like is counted and let your friends know who is the most popular here!</string>
+    <string name="restore_text"> Restore</string>
+    <!--Profile Screen-->
+    <string name="block">Block</string>
+    <string name="unblock">Unblock</string>
+    <!--Main Fragment-->
+    <string name="likulator_title" translatable="false">Likulator</string>
+    <string name="friends">Friends</string>
+    <string name="world">World</string>
+    <string name="city">City</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <!--Rating fragment-->
+    <string name="likes">Likes</string>
+    <string name="rating">Rating</string>
+    <string name="calculate">Calculate My Likes</string>
+    <string name="drawer_open" translatable="false">Drawer open</string>
+    <string name="drawer_close" translatable="false">Drawer close</string>
+    <string name="likes_statisctics">Likes statistics</string>
+    <string name="delete_my_profile">Delete My Profile</string>
+    <string name="total">Total</string>
+    <string name="share">Share</string>
+    <string name="search">Search</string>
+    <string name="options">Options</string>
+    <string name="blocked">Blocked</string>
+    <string name="photos">Photos</string>
+    <string name="posts">Posts</string>
+    <string name="videos">Videos</string>
+    <string name="carousels">Carousels</string>
+    <string name="getting_likes">Getting likes</string>
+    <string name="getting_photos">Getting photos</string>
+    <string name="getting_videos">Getting videos</string>
+    <string name="getting_followers">Getting followers</string>
+    <string name="getting_following">Getting following</string>
+    <string name="getting_carousels">Getting carousels</string>
+    <string name="action_canceled">Action canceled…</string>
+    <string name="top">Top</string>
+
+
+    <!--Fonts-->
+    <string name="AvenirNext_DemiBold" translatable="false">AvenirNext-DemiBold.ttf</string>
+    <string name="AvenirNext_Regular" translatable="false">AvenirNext-Regular.ttf</string>
+    <string name="AvenirNext_Medium" translatable="false">AvenirNext-Medium.ttf</string>
+    <string name="Roboto_Medium" translatable="false">Roboto-Medium.ttf</string>
+    <!--AdMob-->
+    <string name="acc_pub" translatable="false">ca-app-pub-3091286968802858~9589403073</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3091286968802858/2832423033</string>
+    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-3091286968802858/8000989236</string>
+    <string name="rewarded_video_ad_unit_id" translatable="false">ca-app-pub-3091286968802858/9199177372</string>
+    <!--Privacy-->
+    <string name="terms_of_service_title">Terms of Service\nand Privacy Policy</string>
+    <string name="agree">I AGREE</string>
+    <string name="terms_of_service_and_privacy_policy">By using this application you agree to the<b>Terms of \n Service</b> and <b>Privacy Policy</b></string>
+    <string name="privacy_policy"><![CDATA[<b>Terms and Conditions (Terms)</b><br/><br/>
+            Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the Likulator mobile application (the \"Service\") operated by Appus LP (\"us\", \"we\", or \"our\").<br/>
+            Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.<br/>
+            By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.<br/>
+            <br/><br/><b>Content</b><br/><br/>
+            Our Service allows a user to (i) get the statistics by analyzing his/ her data – the amount of \"likes\" made on his/ her social network profile (ii) share this data on your profile (iii) see the statistics of \"likes\" of other people, friends and citizens of your city who use the Service.<br/>
+            A user has a possibility to be redirected to the profile page via official application of the network or a web-browser.<br/>
+            You are responsible for the data you post via the Service, including its legality, reliability, and appropriateness.<br/>
+            You represent and warrant that: (i) the data you enter is yours (you own it) or you have the right to use it and grant us the rights and license as provided in these Terms (ii) the posting of your Content on or any other rights of any person.<br/>
+            <br/><br/><b>Accounts</b><br/><br/>
+            When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.<br/>
+            You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password, whether your password is with our Service or a third-party service.<br/>
+            You agree not to disclose your password to any third party. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.<br/>
+            You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trade mark that is subject to any rights of another person or entity other than you without appropriate authorization, or a name that is otherwise offensive, vulgar or obscene.<br/>
+            <br/><br/><b>Links To Other Web Sites</b><br/><br/>
+            Our Service may contain links to third-party web sites or services that are not owned or controlled by Appus LP.<br/>
+            Appus LP has no control over, and assumes no responsibility for the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that Appus LP shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.<br/>
+            We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.<br/>
+            <br/><br/><b>Termination</b><br/><br/>
+            We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.<br/>
+            Upon termination, your right to use the Service will immediately cease. If you wish to terminate your account, you may simply discontinue using the Service.<br/>
+            <br/><br/><b>Limitation Of Liability</b><br/><br/>
+            In no event shall Appus LP, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.<br/>
+            <br/><br/><b>Disclaimer</b><br/><br/>
+            Your use of the Service is at your sole risk. The Service is provided on an \"AS IS\" and \"AS AVAILABLE\" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.<br/>
+            Appus LP its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.<br/>
+            <br/><br/><b>Governing Law</b><br/><br/>
+            These Terms shall be governed and construed in accordance with the laws of Ukraine, without regard to its conflict of law provisions.<br/>
+            Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.<br/>
+            <br/><br/><b>Changes</b><br/><br/>
+            We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.<br/>
+            By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.<br/>
+            <br/><br/><b>Contact Us</b><br/><br/>
+            If you have any questions about these Terms, please contact us:<br/><br/>
+            support@appus.software
+     ]]></string>
+    <!--ELSE-->
+    <string name="no_internet_txt">no internet connection</string>
+    <string name="switch_internet_on_txt">switch internet</string>
+    <string name="sign_in">Sign In</string>
+    <string name="understand_txt">GOT IT</string>
+    <string name="msg_confirm_delete_profile">Are you sure you want to delete your profile?</string>
+    <string name="action_settings">Settings</string>
+    <string name="loading">loading…</string>
+    <string name="undefined" translatable="false">undefined</string>
+    <string name="appus" translatable="false">Appus 2016</string>
+    <string name="load">Loading…</string>
+    <string name="likes_on_my_page">I have %d likes on my page. It is great!</string>
+    <string name="likes_count">%d likes</string>
+    <string name="logout_message">Are you sure you want to logout?</string>
+    <string name="logout">Logout</string>
+    <string name="photos_">Photos:</string>
+    <string name="posts_">Posts:</string>
+    <string name="videos_">Videos:</string>
+    <string name="progress_stop_key" translatable="false">completed</string>
+    <string name="share_likulator_with_friends">Share Likulator with friends</string>
+    <string name="write_feedback">Write feedback</string>
+    <string name="terms_and_conditions_title">Terms and Conditions</string>
+    <string name="check_out_more_of_our_apps">Check out more of our apps</string>
+    <string name="no_users">No Users</string>
+    <string name="no_results_for">no results for</string>
+    <string name="likulator_user_feedback">Likulator Instagram user feedback</string>
+    <string name="msg_authorize_instagram">Official API Platform for Instagram is used for authorization. You have to use Instagram username other than email address to log in.</string>
+    <string name="search_hint">Search</string>
+    <string name="no_such_results">No such results</string>
+    <string name="error">Error</string>
+    <string name="msg_failed_to_load_ad">Не удалось загрузить рекламный ролик</string>
+    <string name="my_fans">My Fans</string>
+    <string name="msg_to_get_a_list_of_users_please_buy_a_PRO_version_or_watch_ads">  To get a list of users who liked your activities, please buy a PRO version or watch ads</string>
+    <string name="watch_ads">Watch ads</string>
+
+
 </resources>

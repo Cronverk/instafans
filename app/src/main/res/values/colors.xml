@@ -1,6 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--Base-->
+    <color name="colorPrimary">@color/snow</color>
+    <color name="colorPrimaryDark">@color/dark_gray</color>
+    <color name="transparent">#00000000</color>
+    <!--Splash-->
+    <color name="login_gradient_end_color">#333</color>
+    <color name="login_gradient_start_color">#555</color>
+    <color name="lapislazuli">#3b5998</color>
+    <!--Buttons-->
+    <color name="color_grey">#90949c</color>
+    <color name="manatee">#979797</color>
+    <color name="manatee_0.5">#80979797</color>
+    <color name="carmine_pink">#ea3f4c</color>
+    <color name="red_orange">#ff464d</color>
+    <color name="cerise_pink">#f52581</color>
+    <color name="purple">#6E2AAF</color>
+    <color name="dark_jungle_green">#222222</color>
+    <color name="dark_jungle_green_0.5">#80222222</color>
+    <color name="dark_jungle_green_0.87">#D9222222</color>
+    <!--<color name="colorPrimaryDarkMain">#EBEBEB</color>-->
+    <color name="tabText">#d5d5d5</color>
+    <color name="progressColor">#3c66ae</color>
+    <color name="progressbarBackgroundColor">#E6E5E5</color>
+    <color name="progressbarColor">#3c66ae</color>
+    <!-- DRAWER -->
+    <color name="drawerBackgroundColor">#4E4E4D</color>
+    <color name="drawerCheckedtemBackgroundColor">#919190</color>
+    <color name="white">#ffffff</color>
+    <color name="uclablue">#4867aa</color>
+    <color name="coolblack">#00226a</color>
+    <color name="prussianblue">#1d2e53</color>
+    <color name="davygrey">#4d4d5a</color>
+    <color name="taupegray">#919191</color>
+    <color name="outerspace">#424242</color>
+    <color name="tuftsblue">#567cca</color>
+    <color name="saintpatrickblue">#264076</color>
+    <color name="lapislazuli_1">#32549a</color>
+    <color name="semi_transparent_black">#33000000</color>
+    <color name="semi_transparent_white">#80FFFFFF</color>
+    <color name="davygrey_1">#4e5665</color>
+    <color name="dark_gray">#a5a2a7</color>
+    <color name="taupegray_1">#909090</color>
+    <color name="glaucous">#6179ac</color>
+    <color name="snow">#f9f9f9</color>
+    <color name="light_grey">#eee</color>
+    <color name="ucla_blue">#4867aa</color>
+    <color name="gainsboro">#4867aa</color>
+    <color name="gainsboro_1">#dddddd</color>
+    <color name="isabelline">#ebeaea</color>
+    <color name="darkgray">#a6a6a6</color>
+    <color name="timberwolf">#d8d8d8</color>
+    <color name="black">#000000</color>
 </resources>
+
