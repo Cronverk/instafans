@@ -3,23 +3,22 @@ package software.appus.insta_fans.presentation.statistic_module.presenter;
 import software.appus.insta_fans.domain.common.UseCase;
 import software.appus.insta_fans.domain.common.UseCaseHandler;
 import software.appus.insta_fans.domain.interractors.GetUserUsecase;
-import software.appus.insta_fans.presentation.common.BasePresenter;
 import software.appus.insta_fans.presentation.statistic_module.ui.StatisticView;
 
 /**
  * Created by anatolii.pozniak on 3/13/18.
  */
 
-public class StatisticPresenterImpl extends BasePresenter<StatisticView> implements StatisticPresenter {
-    private GetUserUsecase mGetUserUsecase;
+public class StatisticPresenterImpl implements StatisticPresenter<StatisticView> {
+    private StatisticView mView;
+    private final GetUserUsecase mGetUserUsecase;
+    private final UseCaseHandler mUseCaseHandler;
 
-    public StatisticPresenterImpl(StatisticView view,
-                                  UseCaseHandler useCaseHandler,
+    public StatisticPresenterImpl(UseCaseHandler useCaseHandler,
                                   GetUserUsecase getUserUsecase) {
-        super(view, useCaseHandler);
+        mUseCaseHandler = useCaseHandler;
         mGetUserUsecase = getUserUsecase;
     }
-
 
     @Override
     public void getUser() {
@@ -34,5 +33,15 @@ public class StatisticPresenterImpl extends BasePresenter<StatisticView> impleme
 
             }
         });
+    }
+
+    @Override
+    public void detachView() {
+        this.mView = null;
+    }
+
+    @Override
+    public void attachView(StatisticView view) {
+        mView = view;
     }
 }

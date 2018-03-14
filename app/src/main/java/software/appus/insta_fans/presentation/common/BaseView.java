@@ -16,8 +16,6 @@
 
 package software.appus.insta_fans.presentation.common;
 
-public interface BaseView<T extends BasePresenter> {
-
-    void setPresenter(T presenter);
+public interface BaseView<T extends BasePresenterInterface> {
 
 }

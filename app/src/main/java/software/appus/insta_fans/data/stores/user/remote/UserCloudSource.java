@@ -1,6 +1,7 @@
 package software.appus.insta_fans.data.stores.user.remote;
 
 import software.appus.insta_fans.data.caches.UserCache;
+import software.appus.insta_fans.data.entity.UserEntity;
 import software.appus.insta_fans.data.net.UserApi;
 import software.appus.insta_fans.data.stores.user.UserDataSource;
 
@@ -16,6 +17,16 @@ public class UserCloudSource implements UserDataSource {
                            UserCache userCache) {
         mUserApi = userApi;
         mUserCache = userCache;
+    }
+
+    @Override
+    public UserEntity get() {
+        return null;
+    }
+
+    @Override
+    public void put(UserEntity userEntity) {
+
     }
 
 //    @Override

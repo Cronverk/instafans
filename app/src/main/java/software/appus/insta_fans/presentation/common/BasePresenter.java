@@ -19,11 +19,10 @@ package software.appus.insta_fans.presentation.common;
 import software.appus.insta_fans.domain.common.UseCaseHandler;
 
 public abstract class BasePresenter<T extends BaseView> {
-    protected final T mView;
+    protected T mView;
     protected final UseCaseHandler mUseCaseHandler;
 
-    protected BasePresenter(T view, UseCaseHandler useCaseHandler) {
-        mView = view;
+    protected BasePresenter(UseCaseHandler useCaseHandler) {
         mUseCaseHandler = useCaseHandler;
     }
 }
