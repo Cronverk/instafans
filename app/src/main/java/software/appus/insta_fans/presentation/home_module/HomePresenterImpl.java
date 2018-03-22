@@ -1,9 +1,10 @@
-package software.appus.insta_fans.presentation.home_module.presenter;
+package software.appus.insta_fans.presentation.home_module;
 
 import software.appus.insta_fans.domain.common.UseCase;
 import software.appus.insta_fans.domain.common.UseCaseHandler;
 import software.appus.insta_fans.domain.interractors.GetUserUsecase;
-import software.appus.insta_fans.presentation.home_module.ui.HomeView;
+import software.appus.insta_fans.presentation.home_module.HomeContract.HomePresenter;
+import software.appus.insta_fans.presentation.home_module.HomeContract.HomeView;
 
 /**
  * Created by anatolii.pozniak on 3/13/18.

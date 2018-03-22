@@ -21,7 +21,7 @@ import software.appus.insta_fans.presentation.router_module.common.MenuFactory;
 import software.appus.insta_fans.presentation.router_module.models.SideMenuItemModel;
 import software.appus.insta_fans.presentation.router_module.presenter.RouterPresenter;
 import software.appus.insta_fans.presentation.router_module.presenter.RouterPresenterImpl;
-import software.appus.insta_fans.presentation.settings_module.view.SettingsViewImpl;
+import software.appus.insta_fans.presentation.settings_module.SettingsViewImpl;
 
 /**
  * Created by anatolii.pozniak on 3/14/18.

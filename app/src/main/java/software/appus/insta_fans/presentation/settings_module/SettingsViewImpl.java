@@ -1,4 +1,4 @@
-package software.appus.insta_fans.presentation.settings_module.view;
+package software.appus.insta_fans.presentation.settings_module;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,10 +14,11 @@ import software.appus.insta_fans.common.adapter.ListDelegateAdapter;
 import software.appus.insta_fans.presentation.common.adapter.delegates.SettingsDelegate;
 import software.appus.insta_fans.presentation.common.utils.RateAppUtil;
 import software.appus.insta_fans.presentation.models.UserModel;
+import software.appus.insta_fans.presentation.settings_module.SettingsContract.SettingsPresenter;
+import software.appus.insta_fans.presentation.settings_module.SettingsContract.SettingsView;
 import software.appus.insta_fans.presentation.settings_module.model.SettingsItemModel;
 import software.appus.insta_fans.presentation.settings_module.model.SettingsProvider;
-import software.appus.insta_fans.presentation.settings_module.presenter.SettignsPresenterImpl;
-import software.appus.insta_fans.presentation.settings_module.presenter.SettingsPresenter;
+
 
 /**
  * Created by anatolii.pozniak on 3/13/18.
@@ -42,7 +43,7 @@ public class SettingsViewImpl extends BaseFragment implements SettingsView<Setti
     private void attachPresenter() {
 //        presenter = (SettingsPresenter<SettingsView>) getLastCustomNonConfigurationInstance();
         if (presenter == null) {
-            presenter = new SettignsPresenterImpl();
+            presenter = new SettingsPresenterImpl();
         }
 //        presenter.attachView(this);
     }
