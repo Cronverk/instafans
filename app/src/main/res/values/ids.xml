@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="error_timeout" type="id">Timeout</item>
+    <item name="error_internet" type="id">no internet</item>
+    <item name="wrong_data" type="id">wrong data</item>
+    <item name="bad_request" type="id">bad request</item>
+    <item name="unauthorized" type="id">unauthorized</item>
+    <item name="error_default" type="id">default</item>
+</resources>
