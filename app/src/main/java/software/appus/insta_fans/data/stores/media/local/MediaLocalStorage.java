@@ -1,10 +1,11 @@
 package software.appus.insta_fans.data.stores.media.local;
 
+import java.io.IOException;
 import java.util.List;
 
 import software.appus.insta_fans.data.caches.MediaCache;
-import software.appus.insta_fans.data.entity.UserEntity;
 import software.appus.insta_fans.data.entity.media.MediaEntity;
+import software.appus.insta_fans.data.stores.db.MediaDAO;
 import software.appus.insta_fans.data.stores.media.MediaDataSource;
 
 /**
@@ -13,71 +14,21 @@ import software.appus.insta_fans.data.stores.media.MediaDataSource;
 
 public class MediaLocalStorage implements MediaDataSource {
     private MediaCache mMediaCache;
+    private MediaDAO mMediaDAO;
 
-    public MediaLocalStorage(MediaCache userCache) {
+    public MediaLocalStorage(MediaCache userCache,
+                             MediaDAO mediaDAO) {
         mMediaCache = userCache;
+        mMediaDAO = mediaDAO;
     }
 
     @Override
-    public List<MediaEntity> get() {
-        return mMediaCache.get();
+    public List<MediaEntity> get(String offset_id, int count) throws IOException {
+        return ("0".equals(offset_id)) ? mMediaDAO.getFirstGroup(count) : mMediaDAO.getAll();
     }
 
     @Override
-    public void put(UserEntity userEntity) {
-
+    public void put(List<MediaEntity> list, int offset) {
+        mMediaDAO.put(list);
     }
-
-//    @Override
-//    public Observable<UserEntity> get() {
-//        return Observable.fromCallable(mMediaCache::get);
-//    }
-//
-//    @Override
-//    public Completable put(UserEntity userEntity) {
-//        return Completable.fromCallable(() -> {
-//            mMediaCache.put(userEntity);
-//            return true;
-//        });
-//    }
-//
-//    @Override
-//    public Completable changePassword(String oldPassword, String newPassword) {
-//        return Completable.fromCallable(() -> actionUpdateStoragePassword(newPassword));
-//    }
-//
-//    @Override
-//    public Completable changeAddress(Map<String, String> data) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Completable changeDeliveryAddress(Map<String, String> data) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Completable changePayOption(Map<String, String> data) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Completable changeSettings(String setting, boolean value) {
-//        return null;
-//    }
-//
-//    private boolean actionUpdateStoragePassword(String newPassword) {
-//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            mPasswordCash.put(CryptoUtils.encode(newPassword));
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public Completable invalidate() {
-//        return Completable.fromCallable(() -> {
-//            mMediaCache.evictAll();
-//            return true;
-//        });
-//    }
 }

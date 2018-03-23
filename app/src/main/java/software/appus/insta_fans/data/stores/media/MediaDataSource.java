@@ -1,9 +1,9 @@
 package software.appus.insta_fans.data.stores.media;
 
 
+import java.io.IOException;
 import java.util.List;
 
-import software.appus.insta_fans.data.entity.UserEntity;
 import software.appus.insta_fans.data.entity.media.MediaEntity;
 
 
@@ -12,7 +12,7 @@ import software.appus.insta_fans.data.entity.media.MediaEntity;
  */
 
 public interface MediaDataSource {
-    List<MediaEntity> get();
+    List<MediaEntity> get(String offset_id, int count) throws IOException;
 
-    void put(UserEntity userEntity);
+    void put(List<MediaEntity> list, int offset);
 }

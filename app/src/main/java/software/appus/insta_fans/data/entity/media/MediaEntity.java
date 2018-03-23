@@ -1,9 +1,11 @@
 package software.appus.insta_fans.data.entity.media;
 
+import android.arch.persistence.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
+@Entity
 public class MediaEntity {
 
     @SerializedName("id")

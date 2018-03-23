@@ -5,17 +5,15 @@ import android.content.SharedPreferences;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.List;
 
 import software.appus.insta_fans.data.common.BaseCache;
-import software.appus.insta_fans.data.entity.media.MediaEntity;
 
 
 /**
  * Created by anatolii.pozniak on 11/20/17.
  */
 
-public class MediaCache extends BaseCache<List<MediaEntity>> {
+public class MediaCache extends BaseCache<Boolean> {
 
     public static final String KEY = "media";
     public static final String KEY_DATE = KEY + " date";
@@ -36,7 +34,7 @@ public class MediaCache extends BaseCache<List<MediaEntity>> {
 
     @Override
     protected Type getType() {
-        return new TypeToken<List<MediaEntity>>() {
+        return new TypeToken<Boolean>() {
         }.getType();
     }
 

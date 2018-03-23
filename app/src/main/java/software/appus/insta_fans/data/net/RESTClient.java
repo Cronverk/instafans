@@ -63,4 +63,12 @@ public class RESTClient {
     public RestApi getRestApi() {
         return retrofit.create(RestApi.class);
     }
+
+    public MediaApi getMediaApi() {
+        return retrofit.create(MediaApi.class);
+    }
+
+    public UserApi getUserApi() {
+        return retrofit.create(UserApi.class);
+    }
 }

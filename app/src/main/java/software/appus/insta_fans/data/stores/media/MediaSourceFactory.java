@@ -1,8 +1,8 @@
 package software.appus.insta_fans.data.stores.media;
 
 
-import software.appus.insta_fans.data.caches.UserCache;
-import software.appus.insta_fans.data.net.UserApi;
+import software.appus.insta_fans.data.caches.MediaCache;
+import software.appus.insta_fans.data.stores.db.MediaDAO;
 import software.appus.insta_fans.data.stores.media.local.MediaLocalStorage;
 import software.appus.insta_fans.data.stores.media.remote.MediaCloudSource;
 
@@ -11,17 +11,17 @@ import software.appus.insta_fans.data.stores.media.remote.MediaCloudSource;
  */
 
 public class MediaSourceFactory {
-    private UserApi mUserApi;
-    private UserCache mUserCache;
+    private MediaDAO mMediaDAO;
+    private MediaCache mMediaCache;
 
-    public MediaSourceFactory(UserApi userApi,
-                              UserCache userCache) {
-        mUserApi = userApi;
-        mUserCache = userCache;
+    public MediaSourceFactory(MediaCache mediaCache,
+                              MediaDAO mediaDAO) {
+        mMediaDAO = mediaDAO;
+        mMediaCache = mediaCache;
     }
 
     public MediaDataSource create() {
-        return (!mUserCache.isExpired() && mUserCache.isCached()) ?
-                new MediaLocalStorage(mUserCache) : new MediaCloudSource(mUserApi, mUserCache);
+        return (!mMediaCache.isExpired() && mMediaCache.isCached()) ?
+                new MediaLocalStorage(mMediaCache, mMediaDAO) : new MediaCloudSource(mMediaDAO);
     }
 }
