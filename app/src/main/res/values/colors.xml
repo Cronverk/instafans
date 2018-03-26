@@ -52,5 +52,7 @@
     <color name="darkgray">#a6a6a6</color>
     <color name="timberwolf">#d8d8d8</color>
     <color name="black">#000000</color>
+
+    <color name="background">#dddddd</color>
 </resources>
 
