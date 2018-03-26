@@ -20,12 +20,16 @@ public class MyApp extends MultiDexApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "database-name").build();
         db.mediaDAO();
     }
-
 
     public MediaDAO getMediaDAO() {
         return db.mediaDAO();

@@ -2,9 +2,9 @@ package software.appus.insta_fans.domain.interractors;
 
 import java.util.List;
 
-import software.appus.insta_fans.data.entity.media.MediaEntity;
 import software.appus.insta_fans.data.stores.media.MediaRepository;
 import software.appus.insta_fans.domain.common.UseCase;
+import software.appus.insta_fans.presentation.models.MediaModel;
 
 /**
  * Created by anatolii.pozniak on 3/22/18.
@@ -30,7 +30,7 @@ public class GetUserMediaCountUseCase extends UseCase<GetUserMediaCountUseCase.M
         private String offset;
         private int count;
 
-        private MediaRequest(String offset, int count) {
+        public MediaRequest(String offset, int count) {
             this.offset = offset;
             this.count = count;
         }
@@ -41,13 +41,13 @@ public class GetUserMediaCountUseCase extends UseCase<GetUserMediaCountUseCase.M
     }
 
     public static class MediaResponse implements UseCase.ResponseValue {
-        public List<MediaEntity> mList;
+        public List<MediaModel> mList;
 
-        private MediaResponse(List<MediaEntity> list) {
+        private MediaResponse(List<MediaModel> list) {
             mList = list;
         }
 
-        public static MediaResponse create(List<MediaEntity> mList) {
+        public static MediaResponse create(List<MediaModel> mList) {
             return new MediaResponse(mList);
         }
     }

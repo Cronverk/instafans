@@ -1,12 +1,13 @@
 package software.appus.insta_fans.data.stores.media.local;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import software.appus.insta_fans.data.caches.MediaCache;
-import software.appus.insta_fans.data.entity.media.MediaEntity;
 import software.appus.insta_fans.data.stores.db.MediaDAO;
 import software.appus.insta_fans.data.stores.media.MediaDataSource;
+import software.appus.insta_fans.presentation.models.MediaModel;
 
 /**
  * Created by anatolii.pozniak on 11/28/17.
@@ -23,12 +24,13 @@ public class MediaLocalStorage implements MediaDataSource {
     }
 
     @Override
-    public List<MediaEntity> get(String offset_id, int count) throws IOException {
-        return ("0".equals(offset_id)) ? mMediaDAO.getFirstGroup(count) : mMediaDAO.getAll();
+    public List<MediaModel> get(String offset_id, int count) throws IOException {
+       //mMediaDAO.mediaList().
+        return new ArrayList<>();
     }
 
     @Override
-    public void put(List<MediaEntity> list, int offset) {
+    public void put(List<MediaModel> list, int offset) {
         mMediaDAO.put(list);
     }
 }

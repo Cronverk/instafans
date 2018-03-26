@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.List;
 
 import software.appus.insta_fans.data.caches.MediaCache;
-import software.appus.insta_fans.data.entity.media.MediaEntity;
 import software.appus.insta_fans.data.stores.db.MediaDAO;
+import software.appus.insta_fans.presentation.models.MediaModel;
 
 /**
  * Created by anatolii.pozniak on 3/22/18.
@@ -35,7 +35,7 @@ public class MediaRepository {
     }
 
 
-    public List<MediaEntity> getMedia(String offsetId, int count) throws IOException {
+    public List<MediaModel> getMedia(String offsetId, int count) throws IOException {
         return mSourceFactory.create().get(offsetId, count);
     }
 }

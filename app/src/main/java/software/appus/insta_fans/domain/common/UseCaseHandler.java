@@ -59,8 +59,8 @@ public class UseCaseHandler {
     }
 
     private <V extends UseCase.ResponseValue> void notifyError(
-            final UseCase.UseCaseCallback<V> useCaseCallback) {
-        mUseCaseScheduler.onError(useCaseCallback);
+            final UseCase.UseCaseCallback<V> useCaseCallback, Exception e) {
+        mUseCaseScheduler.onError(useCaseCallback, e);
     }
 
     private static final class UiCallbackWrapper<V extends UseCase.ResponseValue> implements
@@ -80,8 +80,8 @@ public class UseCaseHandler {
         }
 
         @Override
-        public void onError() {
-            mUseCaseHandler.notifyError(mCallback);
+        public void onError(Exception e) {
+            mUseCaseHandler.notifyError(mCallback, e);
         }
     }
 

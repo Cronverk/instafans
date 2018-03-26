@@ -132,8 +132,8 @@ public class UseCaseThreadPoolScheduler implements UseCaseScheduler {
     }
 
     @Override
-    public <V extends UseCase.ResponseValue> void onError(UseCase.UseCaseCallback<V> useCaseCallback) {
-        mHandler.post(() -> useCaseCallback.onError());
+    public <V extends UseCase.ResponseValue> void onError(UseCase.UseCaseCallback<V> useCaseCallback, Exception e) {
+        mHandler.post(() -> useCaseCallback.onError(e));
     }
 
     /* A ThreadFactory implementation which create new threads for the thread pool.

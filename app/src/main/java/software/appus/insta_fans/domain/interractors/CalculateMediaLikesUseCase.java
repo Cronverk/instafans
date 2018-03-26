@@ -6,7 +6,8 @@ import java.util.Map;
 
 import software.appus.insta_fans.data.entity.FollowerEntity;
 import software.appus.insta_fans.data.entity.UserEntity;
-import software.appus.insta_fans.data.net.RESTClient;
+import software.appus.insta_fans.data.net.MediaApi;
+import software.appus.insta_fans.data.net.UserApi;
 import software.appus.insta_fans.domain.common.UseCase;
 import software.appus.insta_fans.presentation.FollowerLikesModel;
 import software.appus.insta_fans.presentation.common.utils.ResponseErrorChecker;
@@ -21,6 +22,14 @@ import static software.appus.insta_fans.presentation.common.Constants.ACESS_TOKE
 
 public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCase.RequestValue, CalculateMediaLikesUseCase.ResponseValue> {
 
+    private UserApi mUserApi;
+    private MediaApi mMediaApi;
+
+    public CalculateMediaLikesUseCase(UserApi userApi,
+                                      MediaApi mediaApi) {
+        mUserApi = userApi;
+        mMediaApi = mediaApi;
+    }
 
     @Override
     protected void executeUseCase(RequestValue values) {
@@ -28,7 +37,7 @@ public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCa
             ProgressModel progress = new ProgressModel();
             MediaModel media = values.mMediaModel;
             List<FollowerEntity> followers = ResponseErrorChecker.getInstance()
-                    .checkResponse(RESTClient.getInstance().getRestApi().getMediaLikes(media.getId(), ACESS_TOKEN).execute())
+                    .checkResponse(mMediaApi.getMediaLikes(media.getId(), ACESS_TOKEN).execute())
                     .data;
 
             Map<String, Long> mapLikes = values.mapLikes;
@@ -41,9 +50,10 @@ public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCa
                     likes = mapLikes.get(follower.getId()) + 1;
                     mapLikes.put(follower.getId(), likes);
                 } else {
-                    user = ResponseErrorChecker.getInstance()
-                            .checkResponse(RESTClient.getInstance().getUserApi().getUser(follower.getId(), ACESS_TOKEN).execute())
-                            .data;
+//                    user = ResponseErrorChecker.getInstance()
+//                            .checkResponse(mUserApi.getUser(follower.getId(), ACESS_TOKEN).execute())
+//                            .data;
+                    user = new UserEntity(follower.getId(),follower.getUsername() ,follower.getLastName() );
                     users.put(follower.getId(), user);
                 }
                 mapLikes.put(follower.getId(), likes);
@@ -95,7 +105,7 @@ public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCa
     }
 
     public static class ResponseValue implements UseCase.ResponseValue {
-        private ProgressModel mModel;
+        public ProgressModel mModel;
 
         private ResponseValue(ProgressModel model) {
             mModel = model;

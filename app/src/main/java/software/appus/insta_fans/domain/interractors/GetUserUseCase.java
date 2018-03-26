@@ -12,11 +12,11 @@ import software.appus.insta_fans.presentation.models.UserModel;
  * Created by anatolii.pozniak on 3/13/18.
  */
 
-public class GetUserUsecase extends UseCase<GetUserUsecase.RequestValues, GetUserUsecase.ResponseValue> {
+public class GetUserUseCase extends UseCase<GetUserUseCase.RequestValues, GetUserUseCase.ResponseValue> {
 
     private final UserRepository mRepository;
 
-    public GetUserUsecase(@NonNull UserRepository repository) {
+    public GetUserUseCase(@NonNull UserRepository repository) {
         mRepository = repository;
     }
 

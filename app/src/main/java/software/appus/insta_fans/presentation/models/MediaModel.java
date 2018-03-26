@@ -1,13 +1,19 @@
 package software.appus.insta_fans.presentation.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * Created by anatolii.pozniak on 3/12/18.
  */
 
+@Entity
 public class MediaModel implements Parcelable {
+    @PrimaryKey
+    @NonNull
     private String id;
     private String thumbUrl;
     private String lowResUrl;

@@ -11,12 +11,15 @@ import software.appus.insta_fans.presentation.models.MediaModel;
 public class MediaEntityToMediaModelMapper extends DataMapper<MediaModel, MediaEntity> {
     @Override
     public MediaModel transform(MediaEntity entity) {
-        MediaModel model = new MediaModel();
-        model.setId(entity.getId());
-        if (entity.getImages() != null) {
-            model.setDefResUrl(entity.getImages().getStandardResolution().getUrl());
-            model.setLowResUrl(entity.getImages().getLowResolution().getUrl());
-            model.setThumbUrl(entity.getImages().getThumbnail().getUrl());
+        MediaModel model = null;
+        if (entity != null) {
+            model = new MediaModel();
+            model.setId(entity.getId());
+            if (entity.getImages() != null) {
+                model.setDefResUrl(entity.getImages().getStandardResolution().getUrl());
+                model.setLowResUrl(entity.getImages().getLowResolution().getUrl());
+                model.setThumbUrl(entity.getImages().getThumbnail().getUrl());
+            }
         }
         return model;
     }

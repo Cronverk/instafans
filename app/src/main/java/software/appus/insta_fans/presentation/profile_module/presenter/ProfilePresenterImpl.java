@@ -2,7 +2,7 @@ package software.appus.insta_fans.presentation.profile_module.presenter;
 
 import software.appus.insta_fans.domain.common.UseCase;
 import software.appus.insta_fans.domain.common.UseCaseHandler;
-import software.appus.insta_fans.domain.interractors.GetUserUsecase;
+import software.appus.insta_fans.domain.interractors.GetUserUseCase;
 import software.appus.insta_fans.presentation.profile_module.ui.ProfileView;
 
 /**
@@ -11,11 +11,11 @@ import software.appus.insta_fans.presentation.profile_module.ui.ProfileView;
 
 public class ProfilePresenterImpl implements ProfilePresenter<ProfileView> {
     private ProfileView mView;
-    private final GetUserUsecase mGetUserUsecase;
+    private final GetUserUseCase mGetUserUsecase;
     private final UseCaseHandler mUseCaseHandler;
 
     public ProfilePresenterImpl(UseCaseHandler useCaseHandler,
-                                GetUserUsecase getUserUsecase) {
+                                GetUserUseCase getUserUsecase) {
         mUseCaseHandler = useCaseHandler;
         mGetUserUsecase = getUserUsecase;
     }
@@ -23,14 +23,14 @@ public class ProfilePresenterImpl implements ProfilePresenter<ProfileView> {
     @Override
     public void getUser() {
 
-        mUseCaseHandler.execute(mGetUserUsecase, null, new UseCase.UseCaseCallback<GetUserUsecase.ResponseValue>() {
+        mUseCaseHandler.execute(mGetUserUsecase, null, new UseCase.UseCaseCallback<GetUserUseCase.ResponseValue>() {
             @Override
-            public void onSuccess(GetUserUsecase.ResponseValue response) {
+            public void onSuccess(GetUserUseCase.ResponseValue response) {
                 mView.updateUserInfo(response.data);
             }
 
             @Override
-            public void onError() {
+            public void onError(Exception e) {
 
             }
         });

@@ -17,6 +17,7 @@ import software.appus.insta_fans.R;
 import software.appus.insta_fans.common.adapter.ListDelegateAdapter;
 import software.appus.insta_fans.presentation.common.BaseActivity;
 import software.appus.insta_fans.presentation.common.adapter.delegates.SideMenuDelegate;
+import software.appus.insta_fans.presentation.home_module.HomeViewImpl;
 import software.appus.insta_fans.presentation.router_module.common.MenuFactory;
 import software.appus.insta_fans.presentation.router_module.models.SideMenuItemModel;
 import software.appus.insta_fans.presentation.router_module.presenter.RouterPresenter;
@@ -107,9 +108,14 @@ public class RouterViewImpl extends BaseActivity implements RouterView {
                 break;
             case RATING_LIST:
                 toolbarTitle = getString(R.string.app_name);
+                goToHomeScreen();
                 break;
         }
 //        setToolbarTitle(toolbarTitle);
+    }
+
+    private void goToHomeScreen() {
+        replaceFragment(HomeViewImpl.newInstance(), true, null);
     }
 
     private void goToMyFansScreen() {
