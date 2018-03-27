@@ -71,7 +71,7 @@ public class RouterViewImpl extends BaseActivity implements RouterView {
     @Override
     protected void initActivityViews() {
         initMenu();
-
+        goToHomeScreen(false);
     }
 
     private void initMenu() {
@@ -108,14 +108,14 @@ public class RouterViewImpl extends BaseActivity implements RouterView {
                 break;
             case RATING_LIST:
                 toolbarTitle = getString(R.string.app_name);
-                goToHomeScreen();
+                goToHomeScreen(true);
                 break;
         }
 //        setToolbarTitle(toolbarTitle);
     }
 
-    private void goToHomeScreen() {
-        replaceFragment(HomeViewImpl.newInstance(), true, null);
+    private void goToHomeScreen(boolean backstack) {
+        replaceFragment(HomeViewImpl.newInstance(), backstack, null);
     }
 
     private void goToMyFansScreen() {

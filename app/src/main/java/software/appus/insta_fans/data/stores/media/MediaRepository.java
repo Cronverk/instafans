@@ -35,7 +35,7 @@ public class MediaRepository {
     }
 
 
-    public List<MediaModel> getMedia(String offsetId, int count) throws IOException {
-        return mSourceFactory.create().get(offsetId, count);
+    public List<MediaModel> getMedia(String offsetId, int iOffset, int count) throws IOException {
+        return mSourceFactory.create().get(offsetId, iOffset, count);
     }
 }

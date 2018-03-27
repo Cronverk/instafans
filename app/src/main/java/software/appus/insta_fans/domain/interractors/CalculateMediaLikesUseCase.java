@@ -1,5 +1,7 @@
 package software.appus.insta_fans.domain.interractors;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,6 @@ import software.appus.insta_fans.domain.common.UseCase;
 import software.appus.insta_fans.presentation.FollowerLikesModel;
 import software.appus.insta_fans.presentation.common.utils.ResponseErrorChecker;
 import software.appus.insta_fans.presentation.models.MediaModel;
-import software.appus.insta_fans.presentation.models.ProgressModel;
 
 import static software.appus.insta_fans.presentation.common.Constants.ACESS_TOKEN;
 
@@ -34,7 +35,6 @@ public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCa
     @Override
     protected void executeUseCase(RequestValue values) {
         try {
-            ProgressModel progress = new ProgressModel();
             MediaModel media = values.mMediaModel;
             List<FollowerEntity> followers = ResponseErrorChecker.getInstance()
                     .checkResponse(mMediaApi.getMediaLikes(media.getId(), ACESS_TOKEN).execute())
@@ -53,15 +53,13 @@ public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCa
 //                    user = ResponseErrorChecker.getInstance()
 //                            .checkResponse(mUserApi.getUser(follower.getId(), ACESS_TOKEN).execute())
 //                            .data;
-                    user = new UserEntity(follower.getId(),follower.getUsername() ,follower.getLastName() );
+                    user = new UserEntity(follower.getId(), follower.getUsername(), follower.getLastName());
                     users.put(follower.getId(), user);
                 }
                 mapLikes.put(follower.getId(), likes);
             }
 
-            progress.setImageUrl(media.getThumbUrl());
-            progress.setFollowerLikesModels(bindMaps(mapLikes, users));
-            getUseCaseCallback().onSuccess(ResponseValue.create(progress));
+            getUseCaseCallback().onSuccess(ResponseValue.create(media.getThumbUrl(), bindMaps(mapLikes, users)));
         } catch (Exception e) {
             getUseCaseCallback().onError(e);
         }
@@ -72,11 +70,11 @@ public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCa
         for (Map.Entry<String, Long> entry : mapLikes.entrySet()) {
             UserEntity user = users.get(entry.getKey());
             if (followersList.size() == 0) {
-                followersList.add(new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
+                followersList.add(new FollowerLikesModel(user.id, user.username, user.profilePicture, entry.getValue()));
             } else {
                 for (int i = 0; i < followersList.size(); i++) {
                     if (followersList.get(i).likes <= entry.getValue()) {
-                        followersList.add(i, new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
+                        followersList.add(i, new FollowerLikesModel(user.id, user.username, user.profilePicture, entry.getValue()));
                         break;
                     }
                 }
@@ -105,14 +103,14 @@ public class CalculateMediaLikesUseCase extends UseCase<CalculateMediaLikesUseCa
     }
 
     public static class ResponseValue implements UseCase.ResponseValue {
-        public ProgressModel mModel;
+        public Pair<String, List<FollowerLikesModel>> mModel;
 
-        private ResponseValue(ProgressModel model) {
+        private ResponseValue(Pair<String, List<FollowerLikesModel>> model) {
             mModel = model;
         }
 
-        public static ResponseValue create(ProgressModel model) {
-            return new ResponseValue(model);
+        public static ResponseValue create(String thumb, List<FollowerLikesModel> list) {
+            return new ResponseValue(new Pair<>(thumb, list));
         }
     }
 }

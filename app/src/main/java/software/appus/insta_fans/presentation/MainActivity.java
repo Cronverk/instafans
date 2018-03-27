@@ -11,18 +11,14 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -175,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements MainLoaderView, U
             mCustomThreadPoolManager.addCallable(new CustomCallable(mCustomThreadPoolManager) {
                 @Override
                 public ProgressModel call() throws Exception {
-                    ProgressModel progress = new ProgressModel();
+//                  Exception  ProgressModel progress = new ProgressModel();
                     int position = mediaPosition.getAndIncrement();
                     Response<ResponseEntity<List<FollowerEntity>, Void>> response;
                     try {
@@ -203,30 +199,27 @@ public class MainActivity extends AppCompatActivity implements MainLoaderView, U
 
                             }
                             List<FollowerLikesModel> followersList = new ArrayList<>();
-                            for (Map.Entry<String, Long> entry : mapLikes.entrySet()) {
-                                UserEntity user = users.get(entry.getKey());
-                                if (followersList.size() == 0) {
-                                    followersList.add(new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
-                                } else {
-                                    for (int i = 0; i < followersList.size(); i++) {
-                                        if (followersList.get(i).likes <= entry.getValue()) {
-                                            followersList.add(i, new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-
-                            progress.setImageUrl(mMediaList.get(position).getThumbUrl());
-                            progress.setFollowerLikesModels(followersList);
+//                            for (Map.Entry<String, Long> entry : mapLikes.entrySet()) {
+//                                UserEntity user = users.get(entry.getKey());
+//                                if (followersList.size() == 0) {
+//                                    followersList.add(new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
+//                                } else {
+//                                    for (int i = 0; i < followersList.size(); i++) {
+//                                        if (followersList.get(i).likes <= entry.getValue()) {
+//                                            followersList.add(i, new FollowerLikesModel(user.username, user.profilePicture, entry.getValue()));
+//                                            break;
+//                                        }
+//                                    }
+//                                }
+//                            }
                         }
-                        Message message = Util.createProgress(Util.MESSAGE_PROGRESS,
-                                progress);
+//                        Message message = Util.createProgress(Util.MESSAGE_PROGRESS,
+//                                progress);
 
-                        if (mPoolManagerRef != null
-                                && mPoolManagerRef.get() != null) {
-                            mPoolManagerRef.get().sendMessageToUiThread(message);
-                        }
+//                        if (mPoolManagerRef != null
+//                                && mPoolManagerRef.get() != null) {
+//                            mPoolManagerRef.get().sendMessageToUiThread(message);
+//                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -249,18 +242,18 @@ public class MainActivity extends AppCompatActivity implements MainLoaderView, U
 
     @Override
     public void updateProgress(ProgressModel progress) {
-        Picasso.with(ivMedia.getContext()).load(progress.getImageUrl()).into(ivMedia);
-        int iProgress = 0;
-        progressCounter++;
-        if (progressCounter == amount) {
-            iProgress = 100;
-            Log.e("time", String.valueOf(Calendar.getInstance().getTimeInMillis() - startTime));
-        } else {
-            iProgress = (int) (progressCounter * 100f / amount);
-        }
-        mAdapter.updateItems(progress.getFollowerLikesModels());
-        tvProgress.setText(iProgress + "%");
-        mProgressBar.setProgress(iProgress);
+//        Picasso.with(ivMedia.getContext()).load(progress.getImageUrl()).into(ivMedia);
+//        int iProgress = 0;
+//        progressCounter++;
+//        if (progressCounter == amount) {
+//            iProgress = 100;
+//            Log.e("time", String.valueOf(Calendar.getInstance().getTimeInMillis() - startTime));
+//        } else {
+//            iProgress = (int) (progressCounter * 100f / amount);
+//        }
+//        mAdapter.updateItems(progress.getFollowerLikesModels());
+//        tvProgress.setText(iProgress + "%");
+//        mProgressBar.setProgress(iProgress);
     }
 
     @Override

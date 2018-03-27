@@ -12,7 +12,7 @@ import software.appus.insta_fans.presentation.models.MediaModel;
  */
 
 public interface MediaDataSource {
-    List<MediaModel> get(String offset_id, int count) throws IOException;
+    List<MediaModel> get(String offset_id, int iOffset, int count) throws IOException;
 
     void put(List<MediaModel> list, int offset);
 }

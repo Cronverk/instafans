@@ -3,6 +3,7 @@ package software.appus.insta_fans.data.stores.media;
 
 import software.appus.insta_fans.data.caches.MediaCache;
 import software.appus.insta_fans.data.stores.db.MediaDAO;
+import software.appus.insta_fans.data.stores.media.local.MediaLocalStorage;
 import software.appus.insta_fans.data.stores.media.remote.MediaCloudSource;
 
 /**
@@ -20,7 +21,7 @@ public class MediaSourceFactory {
     }
 
     public MediaDataSource create() {
-        return /*(!mMediaCache.isExpired() && mMediaCache.isCached()) ?
-                new MediaLocalStorage(mMediaCache, mMediaDAO) :*/ new MediaCloudSource(mMediaDAO);
+        return (!mMediaCache.isExpired() && mMediaCache.isCached()) ?
+                new MediaLocalStorage(mMediaCache, mMediaDAO) : new MediaCloudSource(mMediaDAO);
     }
 }

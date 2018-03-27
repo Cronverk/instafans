@@ -20,23 +20,27 @@ public class GetUserMediaCountUseCase extends UseCase<GetUserMediaCountUseCase.M
     @Override
     protected void executeUseCase(MediaRequest requestValues) {
         try {
-            getUseCaseCallback().onSuccess(MediaResponse.create(mRepository.getMedia(requestValues.offset, requestValues.count)));
+            getUseCaseCallback().onSuccess(MediaResponse.create(mRepository.getMedia(requestValues.offset,
+                    requestValues.iOffset,
+                    requestValues.count)));
         } catch (Exception e) {
             getUseCaseCallback().onError(e);
         }
     }
 
     public static class MediaRequest implements UseCase.RequestValues {
-        private String offset;
-        private int count;
+        private final String offset;
+        private final int iOffset;
+        private final int count;
 
-        public MediaRequest(String offset, int count) {
+        private MediaRequest(String offset, int iOffset, int count) {
             this.offset = offset;
+            this.iOffset = iOffset;
             this.count = count;
         }
 
-        public static MediaRequest create(String offset, int count) {
-            return new MediaRequest(offset, count);
+        public static MediaRequest create(String offset, int iOffset, int count) {
+            return new MediaRequest(offset, iOffset, count);
         }
     }
 

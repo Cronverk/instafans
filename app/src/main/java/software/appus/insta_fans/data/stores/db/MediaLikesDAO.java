@@ -7,6 +7,7 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+import software.appus.insta_fans.presentation.FollowerLikesModel;
 import software.appus.insta_fans.presentation.models.MediaModel;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
@@ -15,18 +16,18 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
  * Created by anatolii.pozniak on 3/23/18.
  */
 @Dao
-public interface MediaDAO {
+public interface MediaLikesDAO {
 
-    @Query("SELECT * FROM mediamodel")
+    @Query("SELECT * FROM FollowerLikesModel")
     List<MediaModel> getAll();
 
     @Insert(onConflict = REPLACE)
-    void put(List<MediaModel> mediaList);
+    void put(List<FollowerLikesModel> mediaList);
 
-    @Query("DELETE FROM mediamodel")
+    @Query("DELETE FROM FollowerLikesModel")
     void deleteAllMedia();
 
-    @Query("SELECT * FROM mediamodel")
-    DataSource.Factory<Integer, MediaModel> mediaList();
+    @Query("SELECT * FROM FollowerLikesModel")
+    DataSource.Factory<Integer, FollowerLikesModel> mediaList();
 
 }

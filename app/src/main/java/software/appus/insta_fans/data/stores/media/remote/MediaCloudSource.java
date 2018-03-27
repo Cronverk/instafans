@@ -29,7 +29,7 @@ public class MediaCloudSource implements MediaDataSource {
 
 
     @Override
-    public List<MediaModel> get(String offset_id, int count) throws IOException {
+    public List<MediaModel> get(String offset_id, int iOffset, int count) throws IOException {
         Response<ResponseEntity<List<MediaEntity>, MediaPagination>> response = RESTClient.getInstance().getMediaApi().getUserMedia(ACESS_TOKEN, offset_id, count).execute();
         ResponseEntity<List<MediaEntity>, MediaPagination> rData = ResponseErrorChecker.getInstance().checkResponse(response);
 

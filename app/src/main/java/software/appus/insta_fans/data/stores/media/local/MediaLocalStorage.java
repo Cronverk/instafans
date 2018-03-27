@@ -1,7 +1,6 @@
 package software.appus.insta_fans.data.stores.media.local;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import software.appus.insta_fans.data.caches.MediaCache;
@@ -24,9 +23,11 @@ public class MediaLocalStorage implements MediaDataSource {
     }
 
     @Override
-    public List<MediaModel> get(String offset_id, int count) throws IOException {
-       //mMediaDAO.mediaList().
-        return new ArrayList<>();
+    public List<MediaModel> get(String offset_id, int iOffset, int count) throws IOException {
+//        PagedList<MediaModel> pagedList = new PagedList.Builder<>(mMediaDAO.mediaList().create(), count)
+//                .build();
+//        LiveData<PagedList<MediaModel>> ll = new LivePagedListBuilder<>(mMediaDAO.mediaList(), count).build();
+        return null;
     }
 
     @Override

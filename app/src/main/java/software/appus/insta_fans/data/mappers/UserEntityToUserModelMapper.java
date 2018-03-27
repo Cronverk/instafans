@@ -18,6 +18,7 @@ public class UserEntityToUserModelMapper extends DataMapper<UserModel, UserEntit
         user.setFullName(entity.fullName);
         user.setUsername(entity.username);
         user.setWebsite(entity.website);
+        user.setPicUrl(entity.profilePicture);
         user.setFollowedByCount(entity.counts.getFollowedBy());
         user.setFollowsCount(entity.counts.getFollows());
         user.setMediaCount(entity.counts.getMedia());

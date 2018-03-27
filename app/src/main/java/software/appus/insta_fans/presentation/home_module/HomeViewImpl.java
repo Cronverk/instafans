@@ -1,6 +1,7 @@
 package software.appus.insta_fans.presentation.home_module;
 
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -22,7 +23,6 @@ import software.appus.insta_fans.presentation.common.Injection;
 import software.appus.insta_fans.presentation.common.adapter.delegates.FollowerLikeDelegate;
 import software.appus.insta_fans.presentation.home_module.HomeContract.HomePresenter;
 import software.appus.insta_fans.presentation.home_module.HomeContract.HomeView;
-import software.appus.insta_fans.presentation.models.ProgressModel;
 import software.appus.insta_fans.presentation.models.UserModel;
 
 /**
@@ -34,12 +34,15 @@ public class HomeViewImpl extends BaseFragment implements HomeView<HomePresenter
 
     private TextView tvProgress;
     private ProgressBar mProgressBar;
+    private ImageView ivProfile;
+    private TextView tvMediaCnt;
+    private TextView tvFollowers;
     private ImageView ivMedia;
     private RecyclerView mRecyclerView;
     private ShimmerFrameLayout mShimmerViewContainer;
-    private float progressCounter = 0;
-    private float amount = 15;
     private ListDelegateAdapter<FollowerLikesModel> mAdapter;
+    private AppCompatButton btnCalculate;
+    private TextView tvName;
 
     public static HomeViewImpl newInstance() {
 
@@ -60,6 +63,11 @@ public class HomeViewImpl extends BaseFragment implements HomeView<HomePresenter
         mProgressBar = view.findViewById(R.id.progress);
         tvProgress = view.findViewById(R.id.tv_progress);
         ivMedia = view.findViewById(R.id.iv_media);
+        ivProfile = view.findViewById(R.id.iv_profile);
+        tvName = view.findViewById(R.id.tv_name);
+        tvMediaCnt = view.findViewById(R.id.tv_media_values);
+        tvFollowers = view.findViewById(R.id.tv_followers_values);
+        btnCalculate = view.findViewById(R.id.btn_calculate);
         mRecyclerView = view.findViewById(R.id.recycler);
         mShimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
     }
@@ -67,40 +75,39 @@ public class HomeViewImpl extends BaseFragment implements HomeView<HomePresenter
     @Override
     protected void initFragmentViews(Bundle savedInstanceState) {
         attachPresenter();
-        presenter.calculateLikes();
-        mShimmerViewContainer.startShimmerAnimation();
+        presenter.getUser();
+        btnCalculate.setOnClickListener(v -> eventClickCalculate());
 
         mAdapter = new ListDelegateAdapter.Builder<FollowerLikesModel>()
                 .addDelegate(new FollowerLikeDelegate())
                 .build();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
+    }
 
+    private void eventClickCalculate() {
+        presenter.calculateLikes();
+        mShimmerViewContainer.setVisibility(View.VISIBLE);
+        mShimmerViewContainer.startShimmerAnimation();
     }
 
     @Override
     public void updateUserInfo(UserModel user) {
-        mShimmerViewContainer.stopShimmerAnimation();
-        mShimmerViewContainer.setVisibility(View.GONE);
+        Picasso.with(getContext()).load(user.getPicUrl()).into(ivProfile);
+        tvMediaCnt.setText(String.valueOf(user.getMediaCount()));
+        tvFollowers.setText(String.valueOf(user.getFollowedByCount()));
+        tvName.setText(user.getFullName());
     }
 
     @Override
-    public void updateProgress(ProgressModel model) {
-        progressCounter++;
-        Picasso.with(getContext()).load(model.getImageUrl()).into(ivMedia);
-        int iProgress = 0;
-        if (progressCounter == amount) {
-            iProgress = 100;
-            showResult(model.getFollowerLikesModels());
-        } else {
-            iProgress = (int) (progressCounter * 100f / amount);
-        }
+    public void updateProgress(String imgUrl, int iProgress) {
+        Picasso.with(getContext()).load(imgUrl).into(ivMedia);
         tvProgress.setText(iProgress + "%");
         mProgressBar.setProgress(iProgress);
-
     }
 
-    private void showResult(List<FollowerLikesModel> list) {
+    @Override
+    public void showResult(List<FollowerLikesModel> list) {
         mShimmerViewContainer.stopShimmerAnimation();
         mShimmerViewContainer.setVisibility(View.GONE);
         mAdapter.updateItems(list);

@@ -14,7 +14,7 @@ import software.appus.insta_fans.presentation.FollowerLikesModel;
 import software.appus.insta_fans.presentation.home_module.HomeContract.HomePresenter;
 import software.appus.insta_fans.presentation.home_module.HomeContract.HomeView;
 import software.appus.insta_fans.presentation.models.MediaModel;
-import software.appus.insta_fans.presentation.models.ProgressModel;
+import software.appus.insta_fans.presentation.models.UserModel;
 
 /**
  * Created by anatolii.pozniak on 3/13/18.
@@ -30,6 +30,8 @@ public class HomePresenterImpl implements HomePresenter<HomeView> {
     private final ConcurrentHashMap<String, Long> mapLikes;
     private final ConcurrentHashMap<String, UserEntity> users;
     private final List<FollowerLikesModel> mFollowerLikesModels;
+    private float progressCounter = 0;
+    private UserModel mUserModel;
 
 
     public HomePresenterImpl(HomeView view,
@@ -53,6 +55,7 @@ public class HomePresenterImpl implements HomePresenter<HomeView> {
         mUseCaseHandler.execute(mGetUserUseCase, null, new UseCase.UseCaseCallback<GetUserUseCase.ResponseValue>() {
             @Override
             public void onSuccess(GetUserUseCase.ResponseValue response) {
+                mUserModel = response.data;
                 mView.updateUserInfo(response.data);
             }
 
@@ -65,8 +68,11 @@ public class HomePresenterImpl implements HomePresenter<HomeView> {
 
     @Override
     public void calculateLikes() {
-        calculateLikes("0");
-
+        progressCounter = 0;
+        mFollowerLikesModels.clear();
+        mapLikes.clear();
+        users.clear();
+        calculateLikes("0", 0);
     }
 
     @Override
@@ -74,9 +80,9 @@ public class HomePresenterImpl implements HomePresenter<HomeView> {
         return null;
     }
 
-    private void calculateLikes(String offset) {
+    private void calculateLikes(String offset, int iOffset) {
         mUseCaseHandler.execute(mGetUserMediaCountUseCase,
-                new GetUserMediaCountUseCase.MediaRequest(offset, MEDIA_LOAD_COUNT),
+                GetUserMediaCountUseCase.MediaRequest.create(offset, iOffset, MEDIA_LOAD_COUNT),
                 new UseCase.UseCaseCallback<GetUserMediaCountUseCase.MediaResponse>() {
                     @Override
                     public void onSuccess(GetUserMediaCountUseCase.MediaResponse response) {
@@ -89,8 +95,7 @@ public class HomePresenterImpl implements HomePresenter<HomeView> {
                                     new UseCase.UseCaseCallback<CalculateMediaLikesUseCase.ResponseValue>() {
                                         @Override
                                         public void onSuccess(CalculateMediaLikesUseCase.ResponseValue response) {
-                                            ProgressModel model = response.mModel;
-                                            mView.updateProgress(model);
+                                            updateProgress(response.mModel.first, response.mModel.second);
                                         }
 
                                         @Override
@@ -101,7 +106,7 @@ public class HomePresenterImpl implements HomePresenter<HomeView> {
                             );
                         }
                         if (mediaList.size() >= MEDIA_LOAD_COUNT) {
-                            HomePresenterImpl.this.calculateLikes(mediaList.get(mediaList.size() - 1).getId());
+                            HomePresenterImpl.this.calculateLikes(mediaList.get(mediaList.size() - 1).getId(), mediaList.size() - 1);
                         }
                     }
 
@@ -111,6 +116,16 @@ public class HomePresenterImpl implements HomePresenter<HomeView> {
                     }
                 }
         );
+    }
+
+    private void updateProgress(String imgUrl, List<FollowerLikesModel> mModel) {
+        progressCounter++;
+        int iProgress = (progressCounter == mUserModel.getMediaCount()) ? 100 : (int) (progressCounter * 100f / mUserModel.getMediaCount());
+        if (iProgress == 100) {
+            mFollowerLikesModels.addAll(mModel);
+            mView.showResult(mFollowerLikesModels);
+        }
+        mView.updateProgress(imgUrl, iProgress);
     }
 
 
