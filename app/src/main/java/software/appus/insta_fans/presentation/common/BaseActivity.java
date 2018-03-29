@@ -1,8 +1,10 @@
 package software.appus.insta_fans.presentation.common;
 
 import android.app.ProgressDialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,7 +16,10 @@ import android.view.inputmethod.InputMethodManager;
 import software.appus.insta_fans.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<V extends BaseContract.View, P extends BaseContract.Presenter<V>> extends AppCompatActivity
+        implements BaseContract.View {
+
+    protected P mPresenter;
     private ProgressDialog progressDialog;
 
     public abstract int getLayoutId();
@@ -31,6 +36,29 @@ public abstract class BaseActivity extends AppCompatActivity {
         attachActivityViews();
         initActivityViews();
     }
+
+    @CallSuper
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        BaseViewModel<V, P> viewModel =
+                ViewModelProviders.of(this).get(BaseViewModel.class);
+        if (viewModel.getPresenter() == null) {
+            viewModel.setPresenter(initPresenter());
+        }
+        mPresenter = viewModel.getPresenter();
+        mPresenter.attachLifecycle(getLifecycle());
+        mPresenter.attachView((V) this);
+    }
+    @CallSuper
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.detachLifecycle(getLifecycle());
+        mPresenter.detachView();
+    }
+
+    protected abstract P initPresenter();
 
     protected abstract void attachActivityViews();
 

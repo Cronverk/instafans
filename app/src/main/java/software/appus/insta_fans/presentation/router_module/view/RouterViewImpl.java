@@ -15,6 +15,7 @@ import java.util.List;
 
 import software.appus.insta_fans.R;
 import software.appus.insta_fans.common.adapter.ListDelegateAdapter;
+import software.appus.insta_fans.domain.common.UseCaseHandler;
 import software.appus.insta_fans.presentation.common.BaseActivity;
 import software.appus.insta_fans.presentation.common.adapter.delegates.SideMenuDelegate;
 import software.appus.insta_fans.presentation.home_module.HomeViewImpl;
@@ -28,7 +29,7 @@ import software.appus.insta_fans.presentation.settings_module.SettingsViewImpl;
  * Created by anatolii.pozniak on 3/14/18.
  */
 
-public class RouterViewImpl extends BaseActivity implements RouterView {
+public class RouterViewImpl extends BaseActivity<RouterView, RouterPresenter> {
     private RelativeLayout mainContainer;
     private Toolbar toolbar;
     private TextView txToolbarTitle;
@@ -38,8 +39,6 @@ public class RouterViewImpl extends BaseActivity implements RouterView {
     private ImageView mSearchMenuItem;
     private RecyclerView rvSideMenu;
     protected String mCurrentFragmentName;
-
-    private RouterPresenter presenter;
     private ListDelegateAdapter<SideMenuItemModel> sideMenuAdapter;
 
     @Override
@@ -47,18 +46,14 @@ public class RouterViewImpl extends BaseActivity implements RouterView {
         return R.layout.activity_navigator;
     }
 
-    private void attachPresenter() {
-        presenter = (RouterPresenter) getLastCustomNonConfigurationInstance();
-        if (presenter == null) {
-            presenter = new RouterPresenterImpl();
-        }
-        presenter.attachView(this);
-    }
 
+    @Override
+    protected RouterPresenter initPresenter() {
+        return new RouterPresenterImpl(UseCaseHandler.getInstance());
+    }
 
     @Override
     protected void attachActivityViews() {
-        attachPresenter();
 //        mainContainer = findViewById(getMainLayoutId());
         drawer = findViewById(R.id.drawer_layout);
         nvMenu = findViewById(R.id.nav_view);
@@ -132,16 +127,5 @@ public class RouterViewImpl extends BaseActivity implements RouterView {
 
     private void goToBuyProScreen() {
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        presenter.detachView();
-        super.onDestroy();
-    }
-
-    @Override
-    public RouterPresenter onRetainCustomNonConfigurationInstance() {
-        return presenter;
     }
 }
